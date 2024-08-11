@@ -11,9 +11,11 @@ class Bank:
     def deposit(self):
         for transactions in range(100):
             random_deposit = randint(50, 500)
-            self.balance += random_deposit
-            print(f'Пополнение: {random_deposit}. Баланс: {self.balance}')
             if self.balance >= 500 and self.lock.locked():
+                self.lock.release()
+            elif self.balance < 500 and self.lock.locked():
+                self.balance += random_deposit
+                print(f'Пополнение: {random_deposit}. Баланс: {self.balance}')
                 self.lock.release()
             sleep(0.001)
 
