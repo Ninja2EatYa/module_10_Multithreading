@@ -25,8 +25,8 @@ class Cafe:
         self.tables = tables
 
     def guest_arrival(self, *guests):
-        seated = False
         for guest in guests:
+            seated = False
             for table in self.tables:
                 if table.guest is None:
                     table.guest = guest
